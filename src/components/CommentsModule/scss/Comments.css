@@ -1,0 +1,367 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto";
+  outline: none;
+  border: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #49a843;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #49a843;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #49a843;
+}
+
+body {
+  background-color: white;
+}
+
+img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+input:focus {
+  outline: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.background-props {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+li {
+  list-style: none;
+}
+
+.input-active {
+  border: 1px solid #49a843;
+}
+
+.btn {
+  width: 90px;
+  height: 38px;
+  padding: 10px 24px;
+  outline: none;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 18px;
+  cursor: pointer;
+  border: none;
+  font-family: "Roboto";
+}
+
+.btn-small {
+  padding: 5px 14px;
+  outline: none;
+  border-radius: 4px;
+  font: 400 12px/16px "Roboto";
+  cursor: pointer;
+  border: none;
+}
+
+.btn-small.primary-medium {
+  background-color: #49a843;
+  color: white;
+  cursor: pointer;
+  width: 100%;
+}
+.btn-small.primary-medium:hover {
+  background-color: #33762f;
+}
+.btn-small.primary-medium:active {
+  background-color: #33762f;
+  opacity: 30%;
+}
+
+.btn.primary-medium-default {
+  cursor: not-allowed;
+  background-color: #e6e6e6;
+  color: white;
+}
+
+.btn.primary-medium-icon {
+  background-color: #49a843;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+.btn.primary-medium-icon::before {
+  content: "+";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
+  font-family: "Roboto";
+  font-weight: 500;
+}
+.btn.primary-medium-icon:hover {
+  background-color: #33762f;
+}
+.btn.primary-medium-icon:active {
+  background-color: #33762f;
+  opacity: 30%;
+}
+
+.btn-small.secondary-medium {
+  color: #49a843;
+  border: 1px solid #49a843;
+  background-color: white;
+  cursor: pointer;
+}
+.btn-small.secondary-medium:hover {
+  color: #33762f;
+  border: 1px solid #33762f;
+}
+.btn-small.secondary-medium:active {
+  color: #49a843;
+  border: 1px solid #49a843;
+  opacity: 30%;
+}
+
+.btn.secondary-medium-default {
+  color: #969d88;
+  background-color: white;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+  cursor: not-allowed;
+}
+
+.btn.secondary-medium-icon {
+  background-color: white;
+  color: #49a843;
+  border: 1px solid #49a843;
+  cursor: pointer;
+  font-weight: 500;
+}
+.btn.secondary-medium-icon::before {
+  content: "+";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
+  font-family: "Roboto";
+  font-weight: 500;
+}
+.btn.secondary-medium-icon:hover {
+  border: 1px solid #33762f;
+  color: #33762f;
+}
+.btn.secondary-medium-icon:active {
+  border: 1px solid #33762f;
+  background-color: white;
+  opacity: 30%;
+}
+
+.comments-list-container {
+  height: 395px;
+  overflow-y: scroll;
+}
+.comments-list-container .comments-main-container {
+  position: relative;
+  margin-bottom: 24px;
+}
+.comments-list-container .comments-main-container .comments-section .profile-image {
+  width: 32px;
+  height: 32px;
+  background-color: #d3f9cd;
+  color: #12160a;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.comments-list-container .comments-main-container .comments-section .user-detail {
+  flex: 1;
+  justify-content: space-between;
+}
+.comments-list-container .comments-main-container .comments-section .user-detail .name {
+  font: 500 12px/16px "Roboto";
+  color: #12160a;
+  margin-left: 10px;
+}
+.comments-list-container .comments-main-container .comments-section .user-detail .name span {
+  font: 400 10px/14px "Roboto";
+  color: #969d88;
+  margin-left: 5px;
+}
+.comments-list-container .comments-main-container .comments-section .user-detail .icons {
+  display: flex;
+}
+.comments-list-container .comments-main-container .comments-section .user-detail .comment-date {
+  font: 400 10px/14px "Roboto";
+  color: #969d88;
+  margin-top: 2px;
+}
+.comments-list-container .comments-main-container .comments-section .user-detail .icons img {
+  width: 16px;
+  cursor: pointer;
+}
+.comments-list-container .comments-main-container .edit-comment {
+  margin-top: 10px;
+}
+.comments-list-container .comments-main-container .cancel_save_btns {
+  display: flex;
+  max-width: 190px;
+  gap: 10px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+.comments-list-container .comments-main-container .comments p {
+  font: 400 12px/16px "Roboto";
+  color: #12160a;
+  margin-top: 6px;
+  margin-left: 42px;
+  max-width: 350px;
+  width: 100%;
+  overflow-wrap: break-word;
+  cursor: pointer;
+}
+.comments-list-container .comments-main-container .comments h1, .comments-list-container .comments-main-container .comments h2, .comments-list-container .comments-main-container .comments h3, .comments-list-container .comments-main-container .comments h4, .comments-list-container .comments-main-container .comments h5, .comments-list-container .comments-main-container .comments h6 {
+  margin-top: 6px;
+  margin-left: 42px;
+  font: 400 12px/16px "Roboto";
+  color: #12160a;
+}
+.comments-list-container .comments-main-container .comments a {
+  font: 400 12px/16px "Roboto";
+  text-decoration: underline;
+  font-family: "Roboto";
+  color: #3b82f6;
+}
+.comments-list-container .no-comments-container img {
+  width: 90%;
+}
+.comments-list-container .no-comments-container p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 500 12px/16px "Roboto";
+  color: #12160a;
+}
+
+.overall_input_send {
+  position: fixed;
+  max-width: 407px;
+  width: 100%;
+}
+.overall_input_send .Input-send {
+  position: relative;
+}
+.overall_input_send .Input-send .input-wrapper {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 5px;
+}
+.overall_input_send .Input-send .send {
+  background-color: #49a843;
+  padding: 7px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 3px;
+}
+.overall_input_send .Input-send .send img {
+  width: 16px;
+}
+.overall_input_send .Input-send textarea {
+  border: 1px solid #eaeaea;
+  height: auto;
+  padding: 10px 37px 10px 12px;
+  width: 100%;
+  color: #12160a;
+  border-radius: 4px;
+  padding-left: 10px;
+  font: 400 12px/16px "Roboto";
+}
+.overall_input_send .Input-send textarea::placeholder {
+  color: #969d88;
+  font: 400 12px/16px "Roboto";
+}
+.overall_input_send .Input-send textarea:focus {
+  border: 1px solid #49a843;
+  outline: none;
+}
+
+.quill .ql-toolbar.ql-snow + .ql-container.ql-snow {
+  border-top: 0px;
+  border-radius: 0px 0px 4px 4px !important;
+}
+.quill .ql-container .ql-snow {
+  min-height: 80px !important;
+}
+.quill .ql-snow.ql-toolbar button:hover,
+.quill .ql-snow .ql-toolbar button:hover,
+.quill .ql-snow.ql-toolbar button:focus,
+.quill .ql-snow .ql-toolbar button:focus,
+.quill .ql-snow.ql-toolbar button.ql-active,
+.quill .ql-snow .ql-toolbar button.ql-active,
+.quill .ql-snow.ql-toolbar .ql-picker-label:hover,
+.quill .ql-snow .ql-toolbar .ql-picker-label:hover,
+.quill .ql-snow.ql-toolbar .ql-picker-label.ql-active,
+.quill .ql-snow .ql-toolbar .ql-picker-label.ql-active,
+.quill .ql-snow.ql-toolbar .ql-picker-item:hover,
+.quill .ql-snow .ql-toolbar .ql-picker-item:hover,
+.quill .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
+.quill .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
+  color: #49a843;
+}
+.quill .ql-snow.ql-toolbar .ql-picker-label {
+  color: #969d88;
+}
+.quill .ql-snow.ql-toolbar .ql-picker-label .ql-stroke {
+  stroke: #969d88;
+}
+.quill .ql-snow.ql-toolbar .ql-picker-label .ql-bold:hover {
+  color: #49a843;
+}
+
+.ql-toolbar.ql-snow {
+  background-color: white;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.ant-drawer-content-wrapper {
+  width: 455px !important;
+}
+
+.ql-editor {
+  padding-bottom: 34px !important;
+  max-height: 400px;
+  background-color: white;
+}
+
+.ql-tooltip .ql-editing {
+  left: 0px;
+  top: 45px;
+}
+
+/*# sourceMappingURL=Comments.css.map */
