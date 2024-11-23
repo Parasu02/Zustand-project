@@ -7,8 +7,8 @@
   outline: none;
   border: none;
   -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  -moz-user-select: none;
+       user-select: none;
 }
 
 ::-webkit-scrollbar {
@@ -302,6 +302,10 @@ li {
   padding-left: 10px;
   font: 400 12px/16px "Roboto";
 }
+.overall_input_send .Input-send textarea::-moz-placeholder {
+  color: #969d88;
+  font: 400 12px/16px "Roboto";
+}
 .overall_input_send .Input-send textarea::placeholder {
   color: #969d88;
   font: 400 12px/16px "Roboto";
@@ -362,6 +366,4 @@ li {
 .ql-tooltip .ql-editing {
   left: 0px;
   top: 45px;
-}
-
-/*# sourceMappingURL=Comments.css.map */
+}/*# sourceMappingURL=Comments.css.map */

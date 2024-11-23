@@ -1,14 +1,25 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { API_END_POINT } from "../../../config";
 import { useAuth } from "../../context/AuthContext";
 import { validateNewpassword } from "../../utils/validate";
 import { Popover, notification } from "antd";
 import GetPasswordPopover from "../../components/PasswordRequirement/PasswordRequirement";
 import { LoadingOutlined } from "@ant-design/icons";
+import { headers } from "../../utils/validate";
+import { create } from "zustand";
 
 //CSS here
 import "./scss/Settings.css";
+import { useParams } from "react-router-dom";
+
+
+export const useSettingStore = create((set, get) => ({
+  activeTab:"2",
+  setActiveTab:(tab)=> set({activeTab:tab}),
+  weightageList:[],
+  setWeightageLists:(batchLists)=> set({weightageList:batchLists}),
+}));
 
 function Settings() {
   const [newPassword, setNewPassword] = useState("");
@@ -18,10 +29,10 @@ function Settings() {
   const [passwordError, setPasswordError] = useState({});
   const [loading,setLoading] = useState(false)
   const { user, token } = useAuth();
-  const headers = {
-    Authorization: `Bearer ${token.access}`,
-    "Content-type": "application/json",
-  };
+  const {activeTab,setActiveTab} = useSettingStore()
+  const {id:batchId} = useParams()
+  const {weightageList,setWeightageLists} = useSettingStore()
+ 
   const handleChangePassword = (e) => {
     e.preventDefault();
     const validateField = validateNewpassword(
@@ -70,8 +81,22 @@ function Settings() {
     }
   };
 
+  useEffect(()=>{
+    axios.get(`${API_END_POINT}task/${batchId}/list/weightage`,{headers}).then((res)=>{
+      console.log(res.data.data);
+      if(res.data.status == 200){
+        const batchLists = [...res.data.data]
+        setWeightageLists(batchLists)
+      }
+      
+    }).catch((error)=>{
+      console.log(error);
+      
+    })
+  })
   return (
     <>
+    
       <div className="main-listing-container">
         <section className="listing-container">
           <div className="user-info-container">
@@ -94,17 +119,18 @@ function Settings() {
           <div className="settings-menu-list-container">
             <div className="menu-list">
               <ul>
-                <li className="settings-nav">Change Password <img src="/icons/Change-password-lock.svg" alt="" /></li>
+                <li className="settings-nav" onClick={()=>setActiveTab("1")}>Change Password <img src="/icons/Change-password-lock.svg" alt="" /></li>
+                <li className="settings-nav" onClick={()=>setActiveTab("2")}>Wegihtage <img src="" alt="" /></li>
               </ul>
             </div>
           </div>
         </section>
       </div>
       <div className="vertical-line">
-        
       </div>
       <div className="main-container-settings">
-        <div className="change-password-menu-container">
+        {activeTab == "1" && (
+          <div className="change-password-menu-container">
           <div className="menu-title">
             <p> Change Password</p>
             <img src="" alt="" />
@@ -196,6 +222,25 @@ function Settings() {
             </div>
           </form>
         </div>
+        )}
+        {activeTab == "2" && (
+          <div>
+            <div className="weightage-list-container">
+              <div className="weightage-card">
+                <div className="weightage-name">
+                  + Add Weightage
+                </div>
+              </div>
+              {weightageList?.map((batch) => (
+                <div className="weightage-card" key={batch.id}>
+                  <div className="weightage-name">
+                    {batch.weightage}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

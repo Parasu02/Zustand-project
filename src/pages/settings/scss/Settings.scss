@@ -281,6 +281,7 @@ li {
     ul {
       margin-top: 27px;
       .settings-nav {
+        border-radius: 5px;
         background-color: #f2f9e4;
         display: flex;
         justify-content: space-between;
@@ -374,6 +375,23 @@ li {
         position: absolute;
         top: 35px;
         right: 10px;
+      }
+    }
+  }
+  .weightage-list-container{
+    margin: 20px;
+    display: flex;
+    gap: 20px;
+    .weightage-card{
+      max-width: 200px;
+      width: 100%;
+      background:#d3f9cd;
+      padding: 20px;
+      border-radius: 10px;
+      .weightage-name{
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }
