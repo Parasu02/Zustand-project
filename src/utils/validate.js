@@ -429,7 +429,7 @@ export const truncateText = (text, maxLength) => {
 };
 
 export const headers = {
-  Authorization: `Bearer ${JSON.parse(localStorage.getItem("token")).access}`,
+  Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))?.access}`,
   "Content-type": "application/json",
 };
 
