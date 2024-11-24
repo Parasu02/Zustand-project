@@ -10,8 +10,8 @@ import axios from "axios";
 import { API_END_POINT } from "../../config";
 
 dayjs.extend(utcPlugin);
+import { getPermission,headers } from "../utils/utility";
 
-import { getPermission,headers } from "../utils/validate";
 
 
 import { useAuth } from "../context/AuthContext";

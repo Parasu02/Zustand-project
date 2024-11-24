@@ -6,7 +6,7 @@ import { Popover,notification } from "antd";
 import axios from "axios";
 
 //Supporting utilities files here
-import { validateNewpassword } from "../../utils/validate";
+import { validateNewpassword } from "../../utils/utility";
 import { API_END_POINT } from "../../../config";
 import GetPasswordPopover from "../../components/PasswordRequirement/PasswordRequirement";
 

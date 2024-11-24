@@ -253,14 +253,14 @@ export const trackPwdRequirement = (password) => {
 
 
 
-const colorObject = {
+export const colorObject = {
   "TODO": { backgroundColor: "#E2E8F0", color: "#64748B" },
   "INPROGRESS": { backgroundColor: "#DBEAFE", color: "#3B82F6" },
   "COMPLETED": { backgroundColor: "#EEFDB0", color: "#49A843" },
   "REWORK": { backgroundColor: "#FEF3C7", color: "#F59E0B" },
   "SUBMITTED": { backgroundColor: "#EEFDB0", color: "#49A843" }
 }
-export default colorObject;
+
 
 // export const CustomIcons = () => {
 //   const icons = Quill.import("ui/icons");

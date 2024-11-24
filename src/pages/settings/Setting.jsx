@@ -2,11 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { API_END_POINT } from "../../../config";
 import { useAuth } from "../../context/AuthContext";
-import { validateNewpassword } from "../../utils/validate";
+import { validateNewpassword,headers } from "../../utils/utility";
 import { Popover, notification } from "antd";
 import GetPasswordPopover from "../../components/PasswordRequirement/PasswordRequirement";
 import { LoadingOutlined } from "@ant-design/icons";
-import { headers } from "../../utils/validate";
 import { create } from "zustand";
 
 //CSS here

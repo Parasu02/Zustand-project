@@ -14,7 +14,7 @@ import AssessmentList from "../../components/AssessmentList";
 import { useAuth } from "../../context/AuthContext";
 
 import { API_END_POINT } from "../../../config";
-import { getPermission, headers } from "../../utils/validate";
+import { getPermission,headers } from "../../utils/utility";
 
 import { useAssessmentStore } from "./AssessmentStore";
 import AssessmentView from "../../components/AssessmentView";

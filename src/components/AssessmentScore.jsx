@@ -1,15 +1,13 @@
 import React from 'react'
 import { useAssessmentStore } from '../pages/assessmentModule/AssessmentStore'
-import colorObject from '../utils/validate'
 import dayjs from "dayjs";
 import axios from 'axios';
 import { API_END_POINT } from '../../config';
 import { Skeleton, Collapse, Dropdown, notification } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import { Drawer } from 'antd';
-import { getPermission, headers, isScoreValidate } from '../utils/validate';
+import { getPermission, headers, isScoreValidate,makeFirstLatterCaps,colorObject } from "../utils/utility";
 import { useAuth } from '../context/AuthContext';
-import { makeFirstLatterCaps } from '../utils/validate';
 import { useParams } from 'react-router-dom';
 import Comments from './CommentsModule/Comments';
 export default function AssessmentScore() {

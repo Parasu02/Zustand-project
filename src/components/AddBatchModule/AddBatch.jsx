@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
 import { API_END_POINT } from "../../../config";
-import { getPermission,validateBatch,headers,truncateText } from "../../utils/validate";
+import { getPermission,validateBatch,headers,truncateText } from "../../utils/utility";
 
 import "./scss/AddBatch.css";
 

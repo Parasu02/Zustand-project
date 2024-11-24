@@ -6,7 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 import ReactQuill from "react-quill";
 import "quill/dist/quill.snow.css";
-import { getPermission, toolbarConfig, validateComments, headers } from "../../utils/validate";
+import { getPermission, toolbarConfig, validateComments, headers } from "../../utils/utility"
 import { API_END_POINT } from "../../../config";
 
 // import { CustomIcons, toolbarConfig, validateComments,getPermission } from "../../utils/validate";

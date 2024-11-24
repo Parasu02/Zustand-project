@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Select, Tooltip,notification } from 'antd';
 import axios from 'axios';
 import { API_END_POINT } from '../../../config';
-import { headers,isWeightageValid } from '../../utils/validate';
+import { headers,isWeightageValid } from '../../utils/utility';
 import { useAssessmentStore } from '../../pages/assessmentModule/AssessmentStore';
 import { useParams } from 'react-router-dom';
 import "./scss/WeightageList.css"

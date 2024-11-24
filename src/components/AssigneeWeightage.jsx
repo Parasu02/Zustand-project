@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { useAssessmentStore } from '../pages/assessmentModule/AssessmentStore'
-import { getPermission } from '../utils/validate'
+
+import { getPermission,headers } from '../utils/utility'
 import { useAuth } from '../context/AuthContext'
-import { headers } from '../utils/validate'
+
 import { API_END_POINT } from '../../config'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'

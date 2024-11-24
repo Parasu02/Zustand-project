@@ -22,8 +22,7 @@ import FilterComponent from "../../components/FilterComponent";
 import useFilter from "../../hooks/useFilter";
 
 import "./scss/css/Applications.css";
-
-import { getPermission,truncateText,headers,makeFirstLatterCaps } from "../../utils/validate";
+import { getPermission,truncateText,headers,makeFirstLatterCaps } from "../../utils/utility";
 import ViewMore from "../../components/Applications/ViewMore";
 
 const Applications = () => {

@@ -8,7 +8,7 @@ import "quill/dist/quill.snow.css";
 import { API_END_POINT } from '../../config';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { validateTask, toolbarConfig, getPermission, headers } from '../utils/validate';
+import { validateTask, toolbarConfig, getPermission, headers } from '../utils/utility'
 
 export default function AssessmentCreate() {
     const { id: batchId } = useParams()

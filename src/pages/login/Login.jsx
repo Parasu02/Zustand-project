@@ -10,8 +10,8 @@ import { notification } from "antd";
 
 import { useAuth } from "../../context/AuthContext";
 
-import { fetchUserInfo, isEmailValid, isPasswordValid } from "../../utils/validate";
 
+import { fetchUserInfo } from "../../utils/utility";
 import { API_END_POINT } from "../../../config";
 
 import "./scss/Login.css";

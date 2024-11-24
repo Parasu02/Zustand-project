@@ -9,8 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "watch": "sass --watch src/scss/style.scss src/scss/css/style.css",
-    "deploy": "vite gh-pages"
+    "watch": "sass --watch src/scss/style.scss src/scss/css/style.css"
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
@@ -33,9 +32,7 @@
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
-    "gh-pages": "^6.2.0",
     "globals": "^15.11.0",
-    "vite": "^5.4.10",
-    "vite-plugin-gh-pages": "^1.0.0"
+    "vite": "^5.4.10"
   }
 }
