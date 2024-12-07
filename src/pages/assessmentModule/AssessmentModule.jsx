@@ -18,6 +18,7 @@ import { getPermission,headers } from "../../utils/utility";
 
 import { useAssessmentStore } from "./AssessmentStore";
 import AssessmentView from "../../components/AssessmentView";
+import StudentLogin from "../studentLogin/StudentLogin";
 
 const AssessmentModule = ({ type }) => {
   const { user } = useAuth()
@@ -28,11 +29,8 @@ const AssessmentModule = ({ type }) => {
   } = useAssessmentStore()
   useEffect(() => {
     setLoading(true);
-    //I have used this condition to prevent that when I click on the edit icon where the task is and then click on the assessment again, the same edit icon is highlighted.
-    // setIsMode("card")
-    // setIsStudentScoreOpen(true)
-    //this useEffect used to fetch task list and will re-run whenever filter or search is updated
-    if (getPermission(user.permissions, "Task", "create")) {
+   
+    if (getPermission(user.permissions, "Task", "read")) {
       const url = `${API_END_POINT}task/${batchId}/list_task/?limit=10&page=1&filter_task_type=${type === "task" ? 0 : 1
         }&search=${assessmentSearchWord}`;
       let assessmentId = editId;
@@ -98,7 +96,9 @@ const AssessmentModule = ({ type }) => {
             </div>
           )}
         </>
-      ) : (<h1>students</h1>)}
+      ) : (
+        <StudentLogin type={type}/>
+      )}
 
     </>
   )

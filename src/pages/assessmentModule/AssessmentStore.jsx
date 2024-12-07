@@ -1,4 +1,8 @@
+import axios from "axios";
 import { create } from "zustand";
+import { API_END_POINT } from "../../../config";
+
+// import { useParams } from "react-router-dom";
 
 export const useAssessmentStore = create((set, get) => ({
   loading: false,
@@ -49,3 +53,7 @@ export const useAssessmentStore = create((set, get) => ({
   isCommentEditId: null,
   setIsCommentEditId:(id) => set({ isCommentEditId: id}),
 }));
+
+// const {id:batchId} = useParams()
+// const url = `${API_END_POINT}task/${batchId}/list_task/?limit=10&page=1&filter_task_type=${1}&search=`
+// axios.get(`${API_END_POINT}/`)

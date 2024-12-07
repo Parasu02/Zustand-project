@@ -1,28 +1,23 @@
-import React, { useEffect,useState } from "react";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
-
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-
-
 import Sidebar from "../layout/Sidebar";
 
-import { API_END_POINT } from "../../config";
-
-
-
 const PrivateRoute = () => {
-  const { token, user, setToken } = useAuth();
-  const {pathname} = useLocation()
+  const { token, user,  } = useAuth();
+
 
   const auth = token["access"] ? true : false;
 
   // If authorized, return an outlet that will render child elements
   // If not, return element that will navigate to login page
+
+
   const menuList = [
-    { label: "Applications", id: "applications" },
-    { label: "Task", id: "task" },
-    { label: "Assessment", id: "assessment" },
-    { label: "Settings", id: "settings" },
+    { label: "Applications", id: "applications", icon: "/icons/application_icon.svg", activeIcon: "/icons/application_active.svg", permission: "Applicant" },
+    { label: "Task", id: "task", icon: "/icons/task_icon.svg", activeIcon: "/icons/task_active.svg", permission: "Task" },
+    { label: "Assessment", id: "assessment", icon: "/icons/task_icon.svg", activeIcon: "/icons/task_active.svg", permission: "Task" }, 
+    { label: "Settings", id: "settings", icon: "/icons/settings_icon.svg", activeIcon: "/icons/setting_active_icon.svg", permission: null },
   ];
 
 
@@ -33,7 +28,7 @@ const PrivateRoute = () => {
 
   return auth ? (
     <div className="container">
-      <Sidebar menuList={pathname.includes("dashboard") ? [] : filteredMenuList} />
+      <Sidebar menuList={filteredMenuList} />
       <Outlet />
     </div>
   ) : (

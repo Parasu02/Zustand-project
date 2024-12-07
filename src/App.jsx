@@ -6,7 +6,6 @@ import { AuthContextProvider } from "./context/AuthContext.jsx";
 import {
   LOGIN,
   APPLICATIONS,
-  DASHBOARD,
   FORGOTPASSWORD,
   CHANGEPASSWORD,
   INDEX,
@@ -34,34 +33,21 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path={INDEX} element={<Navigate to="/login" replace />} />
-
           <Route path={LOGIN} element={<Login />} />
           <Route path={FORGOTPASSWORD} element={<ForgotPassword />} />
           <Route path={`${CHANGEPASSWORD}/:token_verification`} element={<ChangePassword />} />
+          <Route path={APPLICATIONFORM} element={<ApplicationForm />} />
 
-          <Route path={DASHBOARD} element={<PrivateRoute />}>
-            <Route path={DASHBOARD} element={<DashBoard />} />
-          </Route>
-          {/* Private Route, can't access without token */}
-          <Route path={APPLICATIONS} element={<PrivateRoute />}>
+          <Route  element={<PrivateRoute />}>
             <Route path={APPLICATIONS} element={<Applications />} />
+            <Route path={TASKMODULE} element={<AssessmentModule type="task" />} />
+            <Route path={ASSESSMENTMODULE} element={<AssessmentModule type="assessment" />} />
+            <Route path={SETTINGS} element={<Settings />} />
           </Route>
 
-        
-          <Route path={TASKMODULE} element={<PrivateRoute />}>
-            <Route path={TASKMODULE} element={<AssessmentModule type="task"/>} />
-          </Route>
-
-          <Route path={ASSESSMENTMODULE} element={<PrivateRoute />}>
-            <Route path={ASSESSMENTMODULE} element={<AssessmentModule type="assessment"/>} />
-          </Route>
-
-          {/* This open route for application form */}
-          <Route path={APPLICATIONFORM} element={<ApplicationForm/>} />
-        <Route path={SETTINGS} element={<PrivateRoute />}>
-            <Route path={SETTINGS} element={<Settings/>} />
-          </Route>
          
+          
+        
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
