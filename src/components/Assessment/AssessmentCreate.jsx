@@ -1,20 +1,21 @@
 import React from 'react'
-import { useAssessmentStore } from '../pages/assessmentModule/AssessmentStore';
 import { DatePicker, notification, message as messageApi } from "antd";
 import ReactQuill from "react-quill";
 import dayjs from "dayjs";
 import axios from 'axios';
 import "quill/dist/quill.snow.css";
-import { API_END_POINT } from '../../config';
+import { API_END_POINT } from '../../../config';
 import { useParams } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { validateTask, toolbarConfig, getPermission, headers } from '../utils/utility'
+import { useAuth } from '../../context/AuthContext';
+import { validateTask ,toolbarConfig, getPermission, headers} from '../../utils/utility';
+import { useAssessmentStore } from '../../pages/assessmentModule/AssessmentStore';
 
 export default function AssessmentCreate() {
     const { id: batchId } = useParams()
     const { user } = useAuth()
-    const { assessmentLists, currentAssessment,editId,setEditId, assigneeloader, setFormErrors, formErrors, setAssessmentLists } = useAssessmentStore()
-    const currAssessment = currentAssessment() || { task_title: "", task_description: "", due_date: null };
+    const { assessmentLists, getCurrentAssessment,editId,setEditId, assigneeloader, setFormErrors, formErrors, setAssessmentLists } = useAssessmentStore()
+    const currentAssessment = getCurrentAssessment() 
+    
 
     const handleInputChange = (name, value) => {
         // console.log(name,value);
@@ -145,7 +146,7 @@ export default function AssessmentCreate() {
                             <div className="module-header-section flex">
                                 <div className="module-title-section grid">
                                     <input
-                                        value={currAssessment.task_title ? currAssessment.task_title : ""}
+                                        value={currentAssessment.task_title ? currentAssessment.task_title : ""}
                                         name="task_title"
                                         type="text"
                                         onChange={(e) =>
@@ -175,7 +176,7 @@ export default function AssessmentCreate() {
                                     <DatePicker
                                         prefixCls={`${formErrors["due_date"] ? "error-notify" : ""
                                             }`}
-                                        value={currAssessment.due_date ? dayjs(currAssessment.due_date) : null}
+                                        value={currentAssessment.due_date ? dayjs(currentAssessment.due_date) : null}
                                         showTime={{ format: "HH:mm" }}
                                         placeholder="Select here..."
                                         format="YYYY-MM-DD HH:mm"
@@ -201,7 +202,7 @@ export default function AssessmentCreate() {
                                             placeholder="Type here"
                                             className={`${formErrors["task_description"] ? "react-quill error-notify" : "react-quill"
                                                 }`}
-                                            value={currAssessment.task_description}
+                                            value={currentAssessment.task_description}
                                             modules={toolbarConfig}
                                             theme="snow"
                                             onChange={(value) =>
@@ -232,10 +233,10 @@ export default function AssessmentCreate() {
                                                 ? "btn primary-medium-default"
                                                 : "btn primary-medium"
                                                 }`}
-                                            onClick={() => !assigneeloader && validateTask(currAssessment, setFormErrors) ? handleSave(currAssessment) : null}
+                                            onClick={() => !assigneeloader && validateTask(currentAssessment, setFormErrors) ? handleSave(currentAssessment) : null}
 
                                         >
-                                            {currAssessment.draft ? "Create" : "Update"}
+                                            {currentAssessment.draft ? "Create" : "Update"}
                                         </button>
                                     )}
                                 </div>

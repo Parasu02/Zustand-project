@@ -1,22 +1,36 @@
 import React from 'react'
-import { useAssessmentStore } from '../pages/assessmentModule/AssessmentStore'
+import { useAssessmentStore } from '../../pages/assessmentModule/AssessmentStore'
 import dayjs from "dayjs";
 import axios from 'axios';
-import { API_END_POINT } from '../../config';
+import { API_END_POINT } from '../../../config';
 import { Skeleton, Collapse, Dropdown, notification } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import { Drawer } from 'antd';
-import { getPermission, headers, isScoreValidate,makeFirstLatterCaps,colorObject } from "../utils/utility";
-import { useAuth } from '../context/AuthContext';
+import { getPermission, headers, isScoreValidate, makeFirstLatterCaps, colorObject } from "../../utils/utility";
+import { useAuth } from '../../context/AuthContext';
 import { useParams } from 'react-router-dom';
 import Comments from './CommentsModule/Comments';
 export default function AssessmentScore() {
     const { user } = useAuth()
     const { id: batchId } = useParams()
-    const { currentAssessment, assessmentLists, setAssessmentLists, formErrors, setFormErrors, assginedStudentsSearchWord, setAssignedStudentsSearchWord, studentLoading,
-        setStudentLoading, setStudentScoreLists, studentScoreLists,setOpenComments
+    const {
+        getCurrentAssessment,
+        assessmentLists,
+        setAssessmentLists,
+        formErrors,
+        setFormErrors,
+        studentLoading,
+        setStudentLoading,
+        setStudentScoreLists,
+        studentScoreLists,
+        openStudentCommentId,
+        setOpentStudentCommentId,
+        setCommentText,
+        setIsCommentEditId,
+        assigneeSearchWord,
+        setAssignedUsersSearch
     } = useAssessmentStore()
-    const currAssessment = currentAssessment()
+    const currentAssessment = getCurrentAssessment()
 
     const handleStatusChange = (studentId, status) => {
         setStudentLoading(true)
@@ -94,65 +108,65 @@ export default function AssessmentScore() {
 
 
     };
-    
+
     const handleAddScore = () => {
         setStudentLoading(true)
         studentScoreLists.map((scores) => {
-          const url = `${API_END_POINT}task/${batchId}/create/task_score/`;
-          axios
-            .post(url, scores, { headers })
-            .then((res) => {
-              axios
-                .put(
-                  `${API_END_POINT}task/${batchId}/update/task/user/${scores.task_user}`,
-                  { task_status: "COMPLETED" },
-                  { headers }
-                )
+            const url = `${API_END_POINT}task/${batchId}/create/task_score/`;
+            axios
+                .post(url, scores, { headers })
                 .then((res) => {
-                  setStudentLoading(false)
-                  let statusChangeAfterScore = [...assessmentLists];
-                  statusChangeAfterScore = statusChangeAfterScore.map((assessment) => {
-                    assessment.task_users = assessment.task_users.map((student) => {
-                      studentScoreLists.forEach((scores) => {
-                        if (student.id === scores.task_user) {
-                          student.task_status = "COMPLETED";
-                        }
-                      });
-                      return student;
-                    });
-                    return assessment;
-                  });
-                  setAssessmentLists(statusChangeAfterScore);
-                  
-                  notification.success({
-                    message:"Success",
-                    description:"Score Added Successfully"
-                  })
+                    axios
+                        .put(
+                            `${API_END_POINT}task/${batchId}/update/task/user/${scores.task_user}`,
+                            { task_status: "COMPLETED" },
+                            { headers }
+                        )
+                        .then((res) => {
+                            setStudentLoading(false)
+                            let statusChangeAfterScore = [...assessmentLists];
+                            statusChangeAfterScore = statusChangeAfterScore.map((assessment) => {
+                                assessment.task_users = assessment.task_users.map((student) => {
+                                    studentScoreLists.forEach((scores) => {
+                                        if (student.id === scores.task_user) {
+                                            student.task_status = "COMPLETED";
+                                        }
+                                    });
+                                    return student;
+                                });
+                                return assessment;
+                            });
+                            setAssessmentLists(statusChangeAfterScore);
+
+                            notification.success({
+                                message: "Success",
+                                description: "Score Added Successfully"
+                            })
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            setStudentLoading(false)
+
+                        });
                 })
                 .catch((error) => {
-                  console.log(error);
-                  setStudentLoading(false)
-    
+                    setStudentLoading(false)
+                    if ("errors" in error.response.data) {
+                        const errorMessages = error.response.data.errors;
+                        notification.error({
+                            message: 'Error',
+                            description: (
+                                <>
+                                    {errorMessages.map((message, index) => (
+                                        <p key={index}>{message}</p>
+                                    ))}
+                                </>
+                            ),
+                        });
+                    }
                 });
-            })
-            .catch((error) => {
-                setStudentLoading(false)
-              if("errors" in error.response.data){
-                const errorMessages = error.response.data.errors;
-                notification.error({
-                  message: 'Error',
-                  description: (
-                    <>
-                      {errorMessages.map((message, index) => (
-                        <p key={index}>{message}</p>
-                      ))}
-                    </>
-                  ),
-                });
-              }
-            });
         });
-      };
+    };
 
     return (
         <>
@@ -160,24 +174,23 @@ export default function AssessmentScore() {
                 {studentLoading ? <Skeleton active /> : (
                     <>
                         <div className="task-heading">
-                            <p>{currAssessment?.task_users?.length && currAssessment?.task_title ? currAssessment.task_title : ""}</p>
-                            {currAssessment?.task_users?.length > 0 && (
-                                <div className="search-container">
-                                    <input
-                                        type="input"
-                                        placeholder="Search..."
-                                        onChange={(e) => setAssignedUsersSearch(e.target.value)}
-                                    />
-                                    <img
-                                        src="/icons/searchIcon.svg"
-                                        alt="Search icon"
-                                        className="search-icon"
-                                    />
-                                </div>
-                            )}
+                            <p>{currentAssessment?.task_users?.length && currentAssessment?.task_title ? currentAssessment.task_title : ""}</p>
+                            <div className="search-container">
+                                <input
+                                    type="input"
+                                    placeholder="Search..."
+                                    onChange={(e) => setAssignedUsersSearch(e.target.value)}
+                                />
+                                <img
+                                    src="/icons/searchIcon.svg"
+                                    alt="Search icon"
+                                    className="search-icon"
+                                />
+                            </div>
                         </div>
-                        {currAssessment?.task_users?.length ? (
+                        {currentAssessment?.task_users?.length ? (
                             <div className='task-main-container'>
+                                {console.log(currentAssessment.task_users)}
                                 <Collapse
                                     bordered={false}
                                     ghost
@@ -188,8 +201,7 @@ export default function AssessmentScore() {
                                         background: "#ffff",
                                     }}
                                     items={
-                                        currAssessment?.task_users?.map((student, index) => {
-                                            
+                                        currentAssessment?.task_users?.map((student, index) => {
                                             return (
                                                 {
                                                     key: index + 1,
@@ -255,7 +267,7 @@ export default function AssessmentScore() {
                                                                 <div className="student-comment">
                                                                     <img
                                                                         src="/icons/comment-fill.svg"
-                                                                        onClick={() => setOpenComments(student.id)}
+                                                                        onClick={() => setOpentStudentCommentId(student.id)}
                                                                         alt="comment-icon"
                                                                         onMouseOver={(e) => {
                                                                             e.target.src = "/icons/comment-fill-hover.svg";
@@ -272,7 +284,7 @@ export default function AssessmentScore() {
                                                                             getPermission(user.permissions, "TaskScore", "create") && (
                                                                                 <button className="secondary-btn-sm"
                                                                                     onClick={() =>
-                                                                                        isScoreValidate(currAssessment.task_weightages, studentScoreLists, setFormErrors)
+                                                                                        isScoreValidate(currentAssessment.task_weightages, studentScoreLists, setFormErrors)
                                                                                             ? handleAddScore()
                                                                                             : null
                                                                                     }
@@ -322,9 +334,19 @@ export default function AssessmentScore() {
 
                                                                 </div>
                                                             </div>
-                                                            <Comments role={"Admin"}/>
+                                                            <Drawer
+                                                                open={openStudentCommentId}
+                                                                title="Comments"
+                                                                onClose={() => {
+                                                                    setOpentStudentCommentId(null)
+                                                                    setIsCommentEditId(null)
+                                                                    setCommentText("")
+                                                                }}
+                                                            >
+                                                                <Comments role={"Admin"} />
+                                                            </Drawer>
                                                             <div className="applied-weightage-list-container flex" style={{ gap: "10px" }}>
-                                                                {currAssessment?.task_weightages?.map(
+                                                                {currentAssessment?.task_weightages?.map(
                                                                     (weightage, weightageIndex) => (
                                                                         <div key={weightageIndex} className="applied-weightage-card flex">
                                                                             <div className="applied-weightage-name">
@@ -378,7 +400,7 @@ export default function AssessmentScore() {
                                 <div className="image-container ">
                                     <img src="/icons/select-something.svg" alt="" />
                                     <p className="select-something-heading">
-                                        No Assignee has been assigned to this {currAssessment.task_type ? "assessment" : "task"}
+                                        No Assignee has been assigned to this {currentAssessment.task_type ? "assessment" : "task"}
                                         <button className="btn primary-medium" style={{ marginTop: "10px" }} onClick={() => {
                                             setIsStudentScoreOpen(!isStudentScoreOpen)
                                             if (type === "assessment") {

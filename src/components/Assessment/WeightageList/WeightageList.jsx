@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react'
 import { Select, Tooltip,notification } from 'antd';
 import axios from 'axios';
-import { API_END_POINT } from '../../../config';
-import { headers,isWeightageValid } from '../../utils/utility';
-import { useAssessmentStore } from '../../pages/assessmentModule/AssessmentStore';
+import { API_END_POINT } from '../../../../config';
+import { headers,isWeightageValid } from '../../../utils/utility';
+import { useAssessmentStore } from '../../../pages/assessmentModule/AssessmentStore';
 import { useParams } from 'react-router-dom';
 import "./scss/WeightageList.css"
 
 export default function WeightageList() {
-  const { currentAssessment, weightageErrors, setWeightageErros, setWeightageLists,
+  const { getCurrentAssessment, weightageErrors, setWeightageErros, setWeightageLists,
     weightageLists, selectedStudents,editId,assessmentLists,setAssessmentLists
   } = useAssessmentStore();
-  const currAssessment = currentAssessment();
+  const currentAssessment = getCurrentAssessment();
   const { id: batchId } = useParams()
   useEffect(() => {
     axios
@@ -244,7 +244,7 @@ export default function WeightageList() {
       <div className="overall">
         <div className="weightage-adding-container flex">
           <div className="weight-inputs">
-            {currAssessment?.task_weightages?.map((taskWeightage, index) => {
+            {currentAssessment?.task_weightages?.map((taskWeightage, index) => {
               return (
                 <div className="weight-age-input" key={index}>
                   <div className="weightage-select">
@@ -341,17 +341,17 @@ export default function WeightageList() {
             <div className="apply-weightage">
               <Tooltip
                 title={
-                  currAssessment?.task_weightages?.length === 0
+                  currentAssessment?.task_weightages?.length === 0
                     ? "Add atleast one weightage to link in task"
                     : ""
                 }
               >
                 <button
-                  className={`${currAssessment?.task_weightages?.length === 0
+                  className={`${currentAssessment?.task_weightages?.length === 0
                     ? "btn secondary-medium-default"
                     : "btn secondary-medium"
                     }`}
-                  onClick={() => isWeightageValid(currAssessment?.task_weightages, setWeightageErros)? handleSaveWeightage(): null}
+                  onClick={() => isWeightageValid(currentAssessment?.task_weightages, setWeightageErros)? handleSaveWeightage(): null}
                 >
                   Save
                 </button>

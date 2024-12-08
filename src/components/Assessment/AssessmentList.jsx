@@ -7,27 +7,23 @@ import dayjs from "dayjs";
 import utcPlugin from 'dayjs/plugin/utc';
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
-import { API_END_POINT } from "../../config";
+
+import { API_END_POINT } from "../../../config";
 
 dayjs.extend(utcPlugin);
-import { getPermission,headers } from "../utils/utility";
+import { getPermission,headers } from "../../utils/utility";
 
+import { useAuth } from "../../context/AuthContext";
 
-
-import { useAuth } from "../context/AuthContext";
-
-import { useAssessmentStore } from "../pages/assessmentModule/AssessmentStore";
+import { useAssessmentStore } from "../../pages/assessmentModule/AssessmentStore";
 import { useParams } from "react-router-dom";
+import { truncateText } from "../../utils/utility";
 
 
 const TaskCard = ({
   assessment
 }) => {
-  const truncateText = (text, maxLength) => {
-    return text.length > maxLength
-      ? text.substring(0, maxLength) + "..."
-      : text;
-  };
+ 
   const {user} = useAuth();
   const {id:batchId} = useParams()
   const {loading,setIsMode,isMode,editId,setAssessmentLists,setEditId,assessmentLists} = useAssessmentStore()

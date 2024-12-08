@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { API_END_POINT } from "../../../config";
 import { useAuth } from "../../context/AuthContext";
-import { validateNewpassword,headers } from "../../utils/utility";
+import { validateNewpassword,headers, getPermission } from "../../utils/utility";
 import { Popover, notification } from "antd";
 import GetPasswordPopover from "../../components/PasswordRequirement/PasswordRequirement";
 import { LoadingOutlined } from "@ant-design/icons";
@@ -14,7 +14,7 @@ import { useParams } from "react-router-dom";
 
 
 export const useSettingStore = create((set, get) => ({
-  activeTab:"2",
+  activeTab:"1",
   setActiveTab:(tab)=> set({activeTab:tab}),
   weightageList:[],
   setWeightageLists:(batchLists)=> set({weightageList:batchLists}),
@@ -119,7 +119,7 @@ function Settings() {
             <div className="menu-list">
               <ul>
                 <li className="settings-nav" onClick={()=>setActiveTab("1")}>Change Password <img src="/icons/Change-password-lock.svg" alt="" /></li>
-                <li className="settings-nav" onClick={()=>setActiveTab("2")}>Wegihtage <img src="" alt="" /></li>
+                {getPermission(user.permissions,"Weightage","create") && <li className="settings-nav" onClick={()=>setActiveTab("2")}>Wegihtage <img src="" alt="" /></li>}
               </ul>
             </div>
           </div>
@@ -224,20 +224,22 @@ function Settings() {
         )}
         {activeTab == "2" && (
           <div>
-            <div className="weightage-list-container">
-              <div className="weightage-card">
-                <div className="weightage-name">
-                  + Add Weightage
-                </div>
-              </div>
-              {weightageList?.map((batch) => (
-                <div className="weightage-card" key={batch.id}>
-                  <div className="weightage-name">
-                    {batch.weightage}
-                  </div>
-                </div>
-              ))}
-            </div>
+            {getPermission(user.permissions,"Weightage","create") && (
+               <div className="weightage-list-container">
+               <div className="weightage-card">
+                 <div className="weightage-name">
+                   + Add Weightage
+                 </div>
+               </div>
+               {weightageList?.map((batch) => (
+                 <div className="weightage-card" key={batch.id}>
+                   <div className="weightage-name">
+                     {batch.weightage}
+                   </div>
+                 </div>
+               ))}
+             </div>
+            )}
           </div>
         )}
       </div>

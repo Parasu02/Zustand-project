@@ -7,26 +7,29 @@ import axios from "axios";
 
 import dayjs from "dayjs";
 
-import AssessmentList from "../../components/AssessmentList";
-// import AssessmentView from "../../components/AssessmentView";
-// import StudentLogin from "../studentLogin/StudentLogin";
+
+import AssessmentList from "../../components/Assessment/AssessmentList";
+import AssessmentView from "../../components/Assessment/AssessmentView";
+import StudentLogin from "../studentLogin/StudentLogin";
+
 
 import { useAuth } from "../../context/AuthContext";
 
 import { API_END_POINT } from "../../../config";
 import { getPermission,headers } from "../../utils/utility";
-
 import { useAssessmentStore } from "./AssessmentStore";
-import AssessmentView from "../../components/AssessmentView";
-import StudentLogin from "../studentLogin/StudentLogin";
 
 const AssessmentModule = ({ type }) => {
   const { user } = useAuth()
   const { id: batchId } = useParams()
 
-  const { assessmentLists, setLoading, loading, setAssessmentLists, assessmentSearchWord, setAssessmentSearchWord,
-    setEditId, editId
+  const { setLoading, 
+    setAssessmentLists,
+     assessmentSearchWord,
+    setEditId, 
+    editId
   } = useAssessmentStore()
+  
   useEffect(() => {
     setLoading(true);
    

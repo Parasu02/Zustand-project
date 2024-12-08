@@ -15,11 +15,13 @@ export const useAssessmentStore = create((set, get) => ({
   setEditId :(id) => set({ editId:id }),
   isMode:"card",
   setIsMode:(mode) => set({ isMode:mode }),
-  currentAssessment: () => {
+  getCurrentAssessment: () => {
     const state = get();    
     const assessment = state.assessmentLists.find((asses) => asses.id === state.editId);
     return assessment
   },
+  assigneeSearchWord : "",
+  setAssignedUsersSearch: (name) => set({ assigneeSearchWord: name }),
   formErrors: {},
   setFormErrors: (errors) => set({ formErrors: errors }),
   assigneeloader:false,
@@ -46,14 +48,11 @@ export const useAssessmentStore = create((set, get) => ({
   setAssignedStudentsSearchWord:(studentName)=> set({ studentsSearchWord: studentName }),
   studentScoreLists:[],
   setStudentScoreLists:(scoreLists) => set({ studentScoreLists: scoreLists}),
-  openComments:null,
-  setOpenComments:(id) => set({ openComments: id}),
+  openStudentCommentId:null,
+  setOpentStudentCommentId:(id) => set({ openStudentCommentId: id}),
   commentText: "",
   setCommentText:(commentsText) => set({ commentText: commentsText}),
   isCommentEditId: null,
   setIsCommentEditId:(id) => set({ isCommentEditId: id}),
 }));
 
-// const {id:batchId} = useParams()
-// const url = `${API_END_POINT}task/${batchId}/list_task/?limit=10&page=1&filter_task_type=${1}&search=`
-// axios.get(`${API_END_POINT}/`)
