@@ -9,10 +9,12 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "watch": "sass --watch src/scss/style.scss src/scss/css/style.css"
+    "watch": "sass --watch src/pages/applications/scss/Applications.scss src/pages/applications/scss/css/Applications.css"
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
+    "@tanstack/react-query": "^5.62.3",
+    "@tanstack/react-query-devtools": "^5.62.3",
     "antd": "^5.21.6",
     "axios": "^1.7.7",
     "react": "^18.3.1",

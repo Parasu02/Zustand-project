@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { useParams } from "react-router-dom";
 
-import { Modal, Skeleton, notification, message as messageApi, Splitter } from "antd";
+import { notification } from "antd";
 import axios from "axios";
-
-import dayjs from "dayjs";
-
-
 import AssessmentList from "../../components/Assessment/AssessmentList";
 import AssessmentView from "../../components/Assessment/AssessmentView";
 import StudentLogin from "../studentLogin/StudentLogin";
@@ -23,9 +19,10 @@ const AssessmentModule = ({ type }) => {
   const { user } = useAuth()
   const { id: batchId } = useParams()
 
-  const { setLoading, 
+  const {
+    setLoading, 
     setAssessmentLists,
-     assessmentSearchWord,
+    assessmentSearchWord,
     setEditId, 
     editId
   } = useAssessmentStore()
@@ -55,7 +52,7 @@ const AssessmentModule = ({ type }) => {
             assessmentId = res.data.data.length > 0 ? res.data.data[0].id : null;
 
             setEditId(assessmentId);
-            // setFormErrors({});
+
           }
         })
         .catch((error) => {

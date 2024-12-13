@@ -8,7 +8,7 @@ import { useAuth } from "../context/AuthContext";
 import AddBatch from "../components/AddBatchModule/AddBatch";
 
 import { API_END_POINT } from "../../config";
-import { fetchUserInfo, getPermission,headers, truncateText } from '../utils/utility'
+import { fetchUserInfo, getPermission,headers } from '../utils/utility'
 const Sidebar = ({ menuList }) => {
   const navigate = useNavigate();
   const { id: batchId } = useParams();

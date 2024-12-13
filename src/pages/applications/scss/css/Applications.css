@@ -272,6 +272,7 @@ body .container .application-full-container .application-inner-container {
   padding: 20px;
 }
 body .container .application-full-container .application-inner-container .search-container {
+  justify-content: space-between;
   position: relative;
   width: 100%;
   padding-bottom: 5px;

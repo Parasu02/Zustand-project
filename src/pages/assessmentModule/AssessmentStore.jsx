@@ -20,8 +20,6 @@ export const useAssessmentStore = create((set, get) => ({
     const assessment = state.assessmentLists.find((asses) => asses.id === state.editId);
     return assessment
   },
-  assigneeSearchWord : "",
-  setAssignedUsersSearch: (name) => set({ assigneeSearchWord: name }),
   formErrors: {},
   setFormErrors: (errors) => set({ formErrors: errors }),
   assigneeloader:false,

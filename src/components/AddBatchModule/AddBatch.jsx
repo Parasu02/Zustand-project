@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import { useNavigate } from "react-router-dom";
-import { DatePicker, Modal, notification, Drawer, Tooltip, Skeleton } from "antd";
+import { DatePicker, Modal, notification, Drawer, Tooltip } from "antd";
 import { create } from "zustand";
 import dayjs from "dayjs";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
 import { API_END_POINT } from "../../../config";
-import { getPermission,validateBatch,headers,truncateText } from "../../utils/utility";
+import { getPermission, validateBatch, headers, truncateText } from "../../utils/utility";
 
 import "./scss/AddBatch.css";
 
@@ -15,48 +15,57 @@ import "./scss/AddBatch.css";
 
 export const useBatchStore = create((set, get) => ({
   isBatchCreate: false,
-  setIsBatchCreate:(status) => set({ isBatchCreate:status }),
-  batchDetails:{},
+  setIsBatchCreate: (status) => set({ isBatchCreate: status }),
+  batchDetails: {},
   setBatchDetails: (value) => {
-    const currentBatchDetails = get().batchDetails; 
+    const currentBatchDetails = get().batchDetails;
     if (!Object.keys(value).length) {
-      set({ batchDetails: {} }); 
+      set({ batchDetails: {} });
     } else {
       set({ batchDetails: { ...currentBatchDetails, ...value } });
     }
   },
-  batchErrors:{},
-  setBatchErros: (errors) => {    
-    const currentbatchErrors = get().batchErrors; 
+  batchErrors: {},
+  setBatchErros: (errors) => {
+    const currentbatchErrors = get().batchErrors;
     if (!Object.keys(errors).length) {
-      set({ batchErrors: {} }); 
-      
-    }else{
-      set({ batchErrors: { ...currentbatchErrors, ...errors } }); 
+      set({ batchErrors: {} });
+
+    } else {
+      set({ batchErrors: { ...currentbatchErrors, ...errors } });
     }
-    
+
   },
-  batchEditId:null,
-  setBatchEditId:(id) => set({ batchEditId:id }),
+  batchEditId: null,
+  setBatchEditId: (id) => set({ batchEditId: id }),
 
 }));
 
 const AddBatch = (props) => {
-  const {open,setOpen}= props
-  const { user,setUser } = useAuth();
+  const { open, setOpen } = props
+  const { user, setUser } = useAuth();
   const navigate = useNavigate();
-  
- const {isBatchCreate,setIsBatchCreate,setBatchDetails,batchEditId,setBatchEditId,batchDetails,batchErrors,setBatchErros} = useBatchStore()
+
+  const {
+    isBatchCreate,
+    setIsBatchCreate,
+    setBatchDetails,
+    batchEditId,
+    setBatchEditId,
+    batchDetails,
+    batchErrors,
+    setBatchErros
+  } = useBatchStore()
 
 
-const resetFields = () => {
-  setBatchDetails({});
-  setBatchErros({});
-  setBatchEditId(null);
-  setIsBatchCreate(!isBatchCreate); 
-};
-  
-   const handleSwitch = (batch) => {
+  const resetFields = () => {
+    setBatchDetails({});
+    setBatchErros({});
+    setBatchEditId(null);
+    setIsBatchCreate(!isBatchCreate);
+  };
+
+  const handleSwitch = (batch) => {
     Modal.confirm({
       title: (
         <div style={{ fontWeight: 500, fontSize: "16px", fontFamily: "Roboto" }}>
@@ -72,110 +81,110 @@ const resetFields = () => {
   };
 
   const handleEditClick = (batch) => {
-    const {id,batch_name,end_date,start_date} = batch
-    setBatchDetails({"batch_name":batch_name})
-    setBatchDetails({"start_date":start_date})
-    setBatchDetails({"end_date":end_date})
+    const { id, batch_name, end_date, start_date } = batch
+    setBatchDetails({ "batch_name": batch_name })
+    setBatchDetails({ "start_date": start_date })
+    setBatchDetails({ "end_date": end_date })
     setBatchEditId(id)
   };
 
   const handleAddBatchCreate = (e) => {
     e.preventDefault();
-    const isVaildBatch = validateBatch(batchDetails,setBatchErros);
-    
-    if(isVaildBatch){
-      axios.post(`${API_END_POINT}create/batch/`,batchDetails,{headers}).then((res)=>{
-        if(res.data.status == 200){
+    const isVaildBatch = validateBatch(batchDetails, setBatchErros);
+
+    if (isVaildBatch) {
+      axios.post(`${API_END_POINT}create/batch/`, batchDetails, { headers }).then((res) => {
+        if (res.data.status == 200) {
           const newBatchData = res.data.data
-          setUser({ ...user, batch:  [newBatchData, ...user.batch,]});
+          setUser({ ...user, batch: [newBatchData, ...user.batch,] });
           resetFields()
           notification.success({
             message: "Success",
             description: "Batch Created Successfully",
             duration: 3,
-        });
+          });
         }
-      }).catch((error)=>{
+      }).catch((error) => {
         const errorMessage = error.response?.data?.errors;
         if (errorMessage) {
-            Object.entries(errorMessage).forEach(([key, messages]) => {
-                messages.forEach((message) =>
-                    notification.error({
-                        message: `${key}`,
-                        description: message,
-                    })
-                );
-            });
+          Object.entries(errorMessage).forEach(([key, messages]) => {
+            messages.forEach((message) =>
+              notification.error({
+                message: `${key}`,
+                description: message,
+              })
+            );
+          });
         }
       })
     }
   };
 
- 
+
 
   const handleUpdateBatch = (e) => {
     e.preventDefault();
-    const isVaildBatch = validateBatch(batchDetails,setBatchErros);
-    if(isVaildBatch){
+    const isVaildBatch = validateBatch(batchDetails, setBatchErros);
+    if (isVaildBatch) {
       axios
-      .put(`${API_END_POINT}update/batch/${batchEditId}/`, batchDetails, {headers})
-      .then((res) => {
-        if(res.data.status == 200){
-          const updatedData = [...user.batch]?.map((item) => {
-            if (item.id === batchEditId) {
-              return {
-                ...item,
-                ...res.data.data // Spread the properties of res.data.data to update the item
-              };
-            }
-            return item;
-          });
-          setUser({ ...user, batch: updatedData })
-          resetFields()
-          notification.success({
-            message: "Success",
-            description: "Batch Updated Successfully",
-            duration: 3,
-          });
-        }
-      })
-      .catch((error) => {
-        const errorMessage = error.response?.data?.errors;
-        if (errorMessage) {
-            Object.entries(errorMessage).forEach(([key, messages]) => {
-                messages.forEach((message) =>
-                    notification.error({
-                        message: `${key}`,
-                        description: message,
-                    })
-                );
+        .put(`${API_END_POINT}update/batch/${batchEditId}/`, batchDetails, { headers })
+        .then((res) => {
+          if (res.data.status == 200) {
+            const updatedData = [...user.batch]?.map((item) => {
+              if (item.id === batchEditId) {
+                return {
+                  ...item,
+                  ...res.data.data // Spread the properties of res.data.data to update the item
+                };
+              }
+              return item;
             });
-        }
-      });
+            setUser({ ...user, batch: updatedData })
+            resetFields()
+            notification.success({
+              message: "Success",
+              description: "Batch Updated Successfully",
+              duration: 3,
+            });
+          }
+        })
+        .catch((error) => {
+          const errorMessage = error.response?.data?.errors;
+          if (errorMessage) {
+            Object.entries(errorMessage).forEach(([key, messages]) => {
+              messages.forEach((message) =>
+                notification.error({
+                  message: `${key}`,
+                  description: message,
+                })
+              );
+            });
+          }
+        });
     }
   };
 
   const handleInputChange = (input, type) => {
-   let name,value
+    let name, value
 
-   if(type){
-    name = type
-    value = dayjs(input).format("YYYY-MM-DD")
-   }else{
-    name = input.target.name,
-    value = input.target.value
-   }
+    if (type) {
+      name = type
+      value = dayjs(input).format("YYYY-MM-DD")
+    } else {
+      name = input.target.name,
+        value = input.target.value
+    }
 
 
-   if(batchErrors[name]){
-    delete batchErrors[name];
-   }
- 
-   setBatchDetails({[name]:value})
+    if (batchErrors[name]) {
+      delete batchErrors[name];
+    }
 
-  
+    setBatchDetails({ [name]: value })
+
+
   };
-  
+
 
   return (
     <>
@@ -234,7 +243,7 @@ const resetFields = () => {
                         placeholder="Enter the Batch"
                         name="batch_name"
                         value={batchDetails["batch_name"]}
-                        onChange={(e)=>handleInputChange(e)}
+                        onChange={(e) => handleInputChange(e)}
                         autoComplete="off"
                       />
                       <p className="error-message">
@@ -251,12 +260,12 @@ const resetFields = () => {
                           }`}
                         format="YYYY-MM-DD"
                         value={batchDetails["start_date"] ? dayjs(batchDetails["start_date"]) : null}
-                        onChange={(value)=>handleInputChange(value,"start_date")}
+                        onChange={(value) => handleInputChange(value, "start_date")}
                         placeholder="Start Year"
                       />
                       <p className="error-message">
-                        {batchErrors["start_date"]  && (
-                          <span style={{ color: "red" }}>{batchErrors["start_date"] }</span>
+                        {batchErrors["start_date"] && (
+                          <span style={{ color: "red" }}>{batchErrors["start_date"]}</span>
                         )}
                       </p>
                     </div>
@@ -268,7 +277,7 @@ const resetFields = () => {
                         id="endYearInput"
                         format="YYYY-MM-DD"
                         value={batchDetails["end_date"] ? dayjs(batchDetails["end_date"]) : null}
-                        onChange={(value)=>handleInputChange(value,"end_date")}
+                        onChange={(value) => handleInputChange(value, "end_date")}
                         placeholder="End Year"
                       />
                       <p className="error-message">
@@ -277,64 +286,53 @@ const resetFields = () => {
                         )}
                       </p>
                     </div>
-
-                    {batchEditId ? (
-                      <button className="btn primary-medium " > Update Batch</button>
-                    ) : (
-                      <button className="btn primary-medium" >Create Batch </button>
-                    )}
+                    <button className="btn primary-medium " > {batchEditId ? "Update Batch" : "Create Batch "}</button>
                   </div>
                 </form>
               )}
             </div>
             <div className="switch-batch-list-container">
-              {!isBatchCreate && user?.batch?.length > 0 && (
-                <>
-                  {user?.batch?.map((batch, index) => (
-                    <>
-                      <div className="switchbatch-container">
-                        <div
-                          className="switch-batch-card flex"
-                          onClick={() => handleSwitch(batch)}
-                          key={index}
-                        >
-                          <div className="batch-left-side flex">
-                            <div className="batch-name-year">
-                              <Tooltip title={truncateText(batch.batch_name).length < 30 ? "" : truncateText(batch.batch_name)}>
-                                <h4>{truncateText(batch.batch_name)}</h4>
-                              </Tooltip>
-                              <p>
-                                {dayjs(batch.start_date).format("YYYY")} - {dayjs(batch.end_date).format("YYYY")}
-                              </p>
-                            </div>
+              {!isBatchCreate && user?.batch?.length > 0 && user?.batch?.map((batch, index) => (
+                <div className="switchbatch-container" key={batch.id || index}>
+                  <div
+                    className="switch-batch-card flex"
+                    onClick={() => handleSwitch(batch)}
 
-                          </div>
-                        </div>
-                        <div className="batch-right-side">
-                          {getPermission(user.permissions, "Batch", "update") && (
-                            <img
-                              className="edit-icon"
-                              src="/icons/edit-pencil-icon.svg"
-                              alt=""
-                              onClick={() => {
-                                handleEditClick(batch);
-                                setIsBatchCreate(!isBatchCreate)
-                              }}
-                              onMouseOver={(e) => {
-                                e.target.src = "/icons/edit-icon-hover.svg";
-                              }}
-                              onMouseOut={(e) => {
-                                e.target.src = "/icons/edit-pencil-icon.svg";
-                              }}
-                            />
-                          )}
-
-                        </div>
+                  >
+                    <div className="batch-left-side flex">
+                      <div className="batch-name-year">
+                        <Tooltip title={truncateText(batch.batch_name).length < 30 ? "" : truncateText(batch.batch_name)}>
+                          <h4>{truncateText(batch.batch_name,30)}</h4>
+                        </Tooltip>
+                        <p>
+                          {dayjs(batch.start_date).format("YYYY")} - {dayjs(batch.end_date).format("YYYY")}
+                        </p>
                       </div>
-                    </>
-                  ))}
-                </>
-              )}
+
+                    </div>
+                  </div>
+                  <div className="batch-right-side">
+                    {getPermission(user.permissions, "Batch", "update") && (
+                      <img
+                        className="edit-icon"
+                        src="/icons/edit-pencil-icon.svg"
+                        alt=""
+                        onClick={() => {
+                          handleEditClick(batch);
+                          setIsBatchCreate(!isBatchCreate)
+                        }}
+                        onMouseOver={(e) => {
+                          e.target.src = "/icons/edit-icon-hover.svg";
+                        }}
+                        onMouseOut={(e) => {
+                          e.target.src = "/icons/edit-pencil-icon.svg";
+                        }}
+                      />
+                    )}
+
+                  </div>
+                </div>
+              ))}
             </div>
           </>
         </div>
