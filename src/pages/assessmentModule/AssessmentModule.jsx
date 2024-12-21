@@ -14,6 +14,7 @@ import { useAuth } from "../../context/AuthContext";
 import { API_END_POINT } from "../../../config";
 import { getPermission,headers } from "../../utils/utility";
 import { useAssessmentStore } from "./AssessmentStore";
+import { useQuery } from "@tanstack/react-query";
 
 const AssessmentModule = ({ type }) => {
   const { user } = useAuth()
@@ -24,54 +25,26 @@ const AssessmentModule = ({ type }) => {
     setAssessmentLists,
     assessmentSearchWord,
     setEditId, 
-    editId
+    editId,
   } = useAssessmentStore()
   
-  useEffect(() => {
-    setLoading(true);
-   
-    if (getPermission(user.permissions, "Task", "read")) {
-      const url = `${API_END_POINT}task/${batchId}/list_task/?limit=10&page=1&filter_task_type=${type === "task" ? 0 : 1
-        }&search=${assessmentSearchWord}`;
-      let assessmentId = editId;
+  const getAssessmentLists = async () => {
+    const url = `${API_END_POINT}task/${batchId}/list_task/?limit=10&page=1&filter_task_type=${type === "task" ? 0 : 1}&search=${assessmentSearchWord}`;
+    const { data } = await axios.get(url, { headers });
+    return data.data; 
+  };
 
-      axios
-        .get(url, { headers })
-        .then((res) => {
-          if (res.status === 200 && res.data.message === "Success") {
-            //manipulate the assessment list task type assessment put the 1 otherwise 0 and remove duplicate
-            let assessmentList = [...res.data.data];
-            assessmentList = assessmentList.map((assessment) => ({
-              ...assessment,
-              task_type: assessment.task_type === "ASSESSMENT" ? 1 : 0,
-            }));
+  const { data:assessmentLists, error, isPending } = useQuery({
+    queryKey: ["AssessmentLists",type,assessmentSearchWord],
+    queryFn: getAssessmentLists, 
+  });
 
-            setAssessmentLists(assessmentList);
-
-            setLoading(false);
-            assessmentId = res.data.data.length > 0 ? res.data.data[0].id : null;
-
-            setEditId(assessmentId);
-
-          }
-        })
-        .catch((error) => {
-          setLoading(false);
-          if (
-            error.response.data.status === 400 ||
-            "errors" in error.response.data
-          ) {
-            const errorMessages = error.response.data.errors;
-            notification.error({
-              message: error.response.data?.message,
-              description: errorMessages.detail,
-              duration: 1
-            })
-          }
-        });
+  useEffect(()=>{
+    if(assessmentLists?.length){
+      setAssessmentLists(assessmentLists)
     }
-
-  }, [assessmentSearchWord, type]);
+  },[assessmentLists?.length])
+  
   return (
     <>
       {getPermission(user.permissions, "Task", "create") ? (

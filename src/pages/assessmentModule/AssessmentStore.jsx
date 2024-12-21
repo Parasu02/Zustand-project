@@ -1,8 +1,4 @@
-import axios from "axios";
 import { create } from "zustand";
-import { API_END_POINT } from "../../../config";
-
-// import { useParams } from "react-router-dom";
 
 export const useAssessmentStore = create((set, get) => ({
   loading: false,

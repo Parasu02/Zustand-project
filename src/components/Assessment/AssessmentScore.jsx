@@ -190,7 +190,6 @@ export default function AssessmentScore() {
                         </div>
                         {currentAssessment?.task_users?.length ? (
                             <div className='task-main-container'>
-                                {console.log(currentAssessment.task_users)}
                                 <Collapse
                                     bordered={false}
                                     ghost
