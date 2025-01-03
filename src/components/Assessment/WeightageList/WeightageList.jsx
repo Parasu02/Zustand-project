@@ -5,7 +5,7 @@ import { API_END_POINT } from '../../../../config';
 import { headers,isWeightageValid } from '../../../utils/utility';
 import { useAssessmentStore } from '../../../pages/assessmentModule/AssessmentStore';
 import { useParams } from 'react-router-dom';
-import "./scss/WeightageList.css"
+import "./scss/css/WeightageList.css"
 
 export default function WeightageList() {
   const { getCurrentAssessment, weightageErrors, setWeightageErros, setWeightageLists,
@@ -38,6 +38,7 @@ export default function WeightageList() {
         }
       })
   }, []);
+  
   const handleAddWeightage = () => {
     const newWeightage = { weightage: null, weightage_percentage: null };
 
@@ -299,7 +300,6 @@ export default function WeightageList() {
                   </div>
                   <div className="weightage-unit-container flex" >
                     <div className="weightage-action" >
-                      {/* Show the delete icon only if weightage is greater than 0 */}
                       <span
                         onClick={() =>
                           !selectedStudents.length &&
@@ -331,7 +331,7 @@ export default function WeightageList() {
         <div className="all-btns">
           <div className="add-weightage-button">
             <button
-              className="btn create-btn"
+              className="btn weightage-btn"
             onClick={handleAddWeightage}
             >
               + Add 

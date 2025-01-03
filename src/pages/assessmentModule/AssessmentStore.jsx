@@ -1,5 +1,7 @@
 import { create } from "zustand";
 
+
+
 export const useAssessmentStore = create((set, get) => ({
   loading: false,
   setLoading:(status) => set({ loading:status }),
@@ -9,7 +11,7 @@ export const useAssessmentStore = create((set, get) => ({
   setAssessmentSearchWord:(word) => set({ assessmentSearchWord:word }),
   editId : null,
   setEditId :(id) => set({ editId:id }),
-  isMode:"card",
+  isMode:"edit",
   setIsMode:(mode) => set({ isMode:mode }),
   getCurrentAssessment: () => {
     const state = get();    
@@ -22,14 +24,14 @@ export const useAssessmentStore = create((set, get) => ({
   setAssigneLoading:(status) => set({ assigneeloader:status }),
   isStudentScoreOpen:false,
   setStudentScoreOpen:(status) => set({ isStudentScoreOpen:status }),
-  toggleAssigneeWeightage: 0,
+  toggleAssigneeWeightage: 1,
   setToggleAssigneeWeightage:(boolen) => set({ toggleAssigneeWeightage:boolen }),
   isAssigneeLoading:false,
   setIsAssigneeLoading:(loading) => set({ isAssigneeLoading:loading}),
   students:[],
   setStudents: (studentLists) => set({ students: studentLists }),
   selectedStudents:[],
-  setSelectedStudents: (selectedStudents) => set({ students: selectedStudents }),
+  setSelectedStudents: (selectedStudents) => set({ selectedStudents: selectedStudents }),
   assigneeSearchWord:"",
   setAssigneeSearch:(searchWords) => set({ assigneeSearchWord: searchWords }),
   weightageErrors:{},

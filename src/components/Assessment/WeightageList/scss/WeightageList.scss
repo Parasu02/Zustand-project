@@ -261,6 +261,23 @@ li {
     .all-btns{
         display: flex;
         justify-content: space-between;
+        .add-weightage-button{
+          .btn.weightage-btn{
+            width: 100%;
+            border: 1px solid #eaeaea;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 12px;
+            line-height: 16px;
+            font-weight: 500;
+            background-color: white;
+            font-family: "Roboto";
+            text-transform: capitalize;
+          }
+        }
       }
   }
 }

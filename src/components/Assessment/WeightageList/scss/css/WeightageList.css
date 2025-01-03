@@ -7,8 +7,8 @@
   outline: none;
   border: none;
   -webkit-user-select: none;
-  -moz-user-select: none;
-       user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 ::-webkit-scrollbar {
@@ -220,4 +220,21 @@ li {
 .weightage-main-container .overall .all-btns {
   display: flex;
   justify-content: space-between;
-}/*# sourceMappingURL=WeightageList.css.map */
+}
+.weightage-main-container .overall .all-btns .add-weightage-button .btn.weightage-btn {
+  width: 100%;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  background-color: white;
+  font-family: "Roboto";
+  text-transform: capitalize;
+}
+
+/*# sourceMappingURL=WeightageList.css.map */
