@@ -14,7 +14,8 @@ export default function AssigneeWeightage({weightageShow}) {
         setIsAssigneeLoading, isAssigneeLoading, setStudents, students,
         selectedStudents, editId, setSelectedStudents, assigneeSearchWord, setAssigneeSearch
     } = useAssessmentStore()
-
+    console.log(toggleAssigneeWeightage,"asasa");
+    
     useEffect(() => {
         if (getPermission(user.permissions, "TaskUser", "create")) {
             axios

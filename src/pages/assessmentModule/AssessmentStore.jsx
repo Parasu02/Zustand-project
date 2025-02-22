@@ -3,8 +3,6 @@ import { create } from "zustand";
 
 
 export const useAssessmentStore = create((set, get) => ({
-  loading: false,
-  setLoading:(status) => set({ loading:status }),
   assessmentLists:[],
   setAssessmentLists: (assessmentLists) => set({ assessmentLists: assessmentLists }),
   assessmentSearchWord:"",
@@ -25,6 +23,10 @@ export const useAssessmentStore = create((set, get) => ({
   isStudentScoreOpen:false,
   setStudentScoreOpen:(status) => set({ isStudentScoreOpen:status }),
   toggleAssigneeWeightage: 1,
+  initializeWeightage: (type) =>
+    set({
+      toggleAssigneeWeightage: type === "task" ? 0 : 1
+    }),
   setToggleAssigneeWeightage:(boolen) => set({ toggleAssigneeWeightage:boolen }),
   isAssigneeLoading:false,
   setIsAssigneeLoading:(loading) => set({ isAssigneeLoading:loading}),

@@ -110,10 +110,10 @@ const Applications = () => {
             ) && <button className="btn primary-medium">Import</button>}
           </div> */}
           <div className="create-application-btn-sec">
-            <button className="btn primary-medium-icon" onClick={()=> navigator(`/batch/${batchId}/application/form`)}>Create</button>
+            <button className="btn primary-medium" onClick={()=> navigator(`/batch/${batchId}/application/form`)}>+ Create</button>
           </div>
           <div className="refetch-btn-sec">
-            <button className="btn primary-medium" onClick={refetch}>refetch</button>
+            <button className="btn primary-medium" onClick={refetch}>Refetch</button>
           </div>
         </div>
       </div>
