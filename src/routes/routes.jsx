@@ -6,7 +6,7 @@ const CHANGEPASSWORD = "/change/password";
 const APPLICATIONS = "/batch/:id/applications";
 const TASKMODULE = "/batch/:id/task";
 const ASSESSMENTMODULE = "/batch/:id/assessment";
-const APPLICATIONFORM = "/application/form";
+const APPLICATIONFORM = "/batch/:id/application/form";
 const SETTINGS = "/batch/:id/settings"
 export {
   LOGIN,

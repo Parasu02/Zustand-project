@@ -9,7 +9,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "watch": "sass --watch src/pages/applications/scss/Applications.scss src/pages/applications/scss/css/Applications.css"
+    "watch": "sass --watch src/pages/applicationForm/scss/ApplicationForm.scss src/pages/applicationForm/scss/ApplicationForm.css"
+    
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",

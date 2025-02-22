@@ -106,6 +106,8 @@ li {
 
 .btn.primary-medium-icon {
   background-color: #49a843;
+  display: flex;
+  align-items: center;
   color: white;
   cursor: pointer;
   font-weight: 500;

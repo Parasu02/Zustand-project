@@ -1,18 +1,6 @@
-// import Quill from "quill";
+
 import { notification } from "antd";
 
-/*
-api 
-api
-
-
-
-
-
-
-*/
-
-const a = Promise.all[url,url]
 
 export const validateComments = (value, fieldName, setErrors) => {
   let errors = {};

@@ -1,14 +1,75 @@
 import React, { useState } from "react";
-import { Tabs } from "antd";
+import { Tabs, message } from "antd";
 const { TabPane } = Tabs;
 import "./scss/ApplicationForm.css";
 
 const ApplicationForm = () => {
   const [applicationForm, setApplicationFrom] = useState({});
   const [currentTab, setCurrentTab] = useState("1");
+  const [formErrors, setFormErrors] = useState({});
+
+  const validationRules = {
+    "student-name": { required: true, errorMessage: "Student Name is required" },
+    "dob": { required: true, errorMessage: "Date of Birth is required" },
+    "gender": { required: true, errorMessage: "Gender is required" },
+    "email": { required: true, errorMessage: "Email is required" },
+    "content-number": { required: true, errorMessage: "Contact Number is required" },
+    "whatsapp-number": { required: true, errorMessage: "Whatsapp Number is required" },
+    "address": { required: true, errorMessage: "Address is required" },
+    "apartment": { required: true, errorMessage: "Apartment is required" },
+    "post-code": { required: true, errorMessage: "Postal Code is required" },
+    "city": { required: true, errorMessage: "City is required" },
+    "country": { required: true, errorMessage: "Country is required" },
+    "aadhar-number": { required: true, errorMessage: "Aadhar Number is required" },
+    "aadhar-doc": { required: true, errorMessage: "Aadhar Document is required" },
+    "parent-name": { required: true, errorMessage: "Parent/Guardian Name is required" },
+    "guardian-relationship": { required: true, errorMessage: "Relationship is required" },
+    "guardian-number": { required: true, errorMessage: "Guardian Phone Number is required" },
+    "annual-income": { required: true, errorMessage: "Annual Family Income is required" },
+    "smart-card-file": { required: true, errorMessage: "Smart Card file is required" },
+    "English Score": { required: true, errorMessage: "Math & English Score is required" },
+    "Percentage": { required: true, errorMessage: "Total Percentage is required" },
+    "curricular": { required: false, errorMessage: "" }, // Optional
+    "Course-Completion": { required: false, errorMessage: "" }, // Optional
+    "training": { required: true, errorMessage: "Reason for training is required" },
+    "information": { required: false, errorMessage: "" }, // Optional
+  };
+
+  const stepFields = {
+    "1": [
+      "student-name", "dob", "gender", "email", "content-number", "whatsapp-number",
+      "address", "apartment", "post-code", "city", "country", "aadhar-number", "aadhar-doc"
+    ],
+    "2": [
+      "parent-name", "guardian-relationship", "guardian-number", "annual-income", "smart-card-file"
+    ],
+    "3": [
+      "English Score", "Percentage"
+    ],
+    "4": [
+      "curricular", "Course-Completion", "training", "information"
+    ]
+  };
+  const validateStep = (stepFields) => {
+    let errors = {};
+    stepFields.forEach((fieldName) => {
+      const rules = validationRules[fieldName];
+      const value = applicationForm[fieldName];
+
+      if (rules?.required && !value) {
+        errors[fieldName] = rules.errorMessage;
+      }
+    });
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
   const onchange = (event) => {
     const { name, value, type, files } = event.target;
 
+    if(formErrors[name]){
+      delete formErrors[name]
+    }
     // If the target is a file input
     if (type === "file") {
       // Access the uploaded file(s)
@@ -25,18 +86,30 @@ const ApplicationForm = () => {
     }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-  };
 
   const handleNextTab = () => {
-    let nextTab = parseInt(currentTab) + 1;
-    setCurrentTab(nextTab.toString());
+    const currentStepFields = stepFields[currentTab];
+    if (validateStep(currentStepFields)) {
+      let nextTab = parseInt(currentTab) + 1;
+      setCurrentTab(nextTab.toString());
+    }
+    // else {
+    //   message.error("Please correct the errors before proceeding.");
+    // }
   };
-
   const handlePreviousTab = () => {
     let previousTab = parseInt(currentTab) - 1;
     setCurrentTab(previousTab.toString());
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const currentStepFields = stepFields[currentTab];
+    if (validateStep(currentStepFields)) {
+      console.log("Form submitted", applicationForm);
+    } else {
+      message.error("Please correct the errors before submitting.");
+    }
   };
 
   return (
@@ -122,12 +195,18 @@ const ApplicationForm = () => {
                               name="student-name"
                               onChange={onchange}
                             />
+                            {formErrors["student-name"] && (
+                              <span className="error-message">{formErrors["student-name"]}</span>
+                            )}
                           </div>
                           <div className="applicant-dob">
                             <p>
                               Student Date of Birth <span>*</span>
                             </p>
                             <input type="date" name="dob" onChange={onchange} />
+                            {formErrors["dob"] && (
+                              <span className="error-message">{formErrors["dob"]}</span>
+                            )}
                           </div>
                           <div className="applicant-gender">
                             <p>
@@ -139,6 +218,9 @@ const ApplicationForm = () => {
                               name="gender"
                               onChange={onchange}
                             />
+                            {formErrors["gender"] && (
+                              <span className="error-message">{formErrors["gender"]}</span>
+                            )}
                           </div>
                         </div>
 
@@ -152,6 +234,9 @@ const ApplicationForm = () => {
                               name="email"
                               onChange={onchange}
                             />
+                            {formErrors["email"] && (
+                              <span className="error-message">{formErrors["email"]}</span>
+                            )}
                           </div>
                           <div className="applicant-contact-number">
                             <p>Contact Number <span>*</span></p>
@@ -161,6 +246,9 @@ const ApplicationForm = () => {
                               name="content-number"
                               onChange={onchange}
                             />
+                            {formErrors["content-number"] && (
+                              <span className="error-message">{formErrors["content-number"]}</span>
+                            )}
                           </div>
                         </div>
 
@@ -174,6 +262,9 @@ const ApplicationForm = () => {
                               name="whatsapp-number"
                               onChange={onchange}
                             />
+                             {formErrors["whatsapp-number"] && (
+                              <span className="error-message">{formErrors["whatsapp-number"]}</span>
+                            )}
                           </div>
                           <div className="applicant-address">
                             <p>Street Address <span>*</span></p>
@@ -183,6 +274,9 @@ const ApplicationForm = () => {
                               name="address"
                               onChange={onchange}
                             />
+                             {formErrors["address"] && (
+                              <span className="error-message">{formErrors["address"]}</span>
+                            )}
                           </div>
                           <div className="applicant-apartment">
                             <p>Apartment, suite, etc <span>*</span></p>
@@ -192,6 +286,9 @@ const ApplicationForm = () => {
                               name="apartment"
                               onChange={onchange}
                             />
+                             {formErrors["apartment"] && (
+                              <span className="error-message">{formErrors["apartment"]}</span>
+                            )}
                           </div>
                         </div>
 
@@ -205,6 +302,9 @@ const ApplicationForm = () => {
                               name="post-code"
                               onChange={onchange}
                             />
+                             {formErrors["post-code"] && (
+                              <span className="error-message">{formErrors["post-code"]}</span>
+                            )}
                           </div>
                           <div className="applicant-city">
                             <p>City<span>*</span></p>
@@ -214,6 +314,9 @@ const ApplicationForm = () => {
                               name="city"
                               onChange={onchange}
                             />
+                             {formErrors["city"] && (
+                              <span className="error-message">{formErrors["city"]}</span>
+                            )}
                           </div>
                           <div className="applicant-whatsapp-number">
                             <p>Country<span>*</span></p>
@@ -223,6 +326,9 @@ const ApplicationForm = () => {
                               name="country"
                               onChange={onchange}
                             />
+                             {formErrors["country"] && (
+                              <span className="error-message">{formErrors["country"]}</span>
+                            )}
                           </div>
                         </div>
 
@@ -236,6 +342,9 @@ const ApplicationForm = () => {
                               name="aadhar-number"
                               onChange={onchange}
                             />
+                            {formErrors["aadhar-number"] && (
+                              <span className="error-message">{formErrors["aadhar-number"]}</span>
+                            )}
                           </div>
                           <div className="applicant-postcode">
                             <p>Upload the Aadhar Card <span>*</span></p>
@@ -245,6 +354,9 @@ const ApplicationForm = () => {
                               name="aadhar-doc"
                               onChange={onchange}
                             />
+                            {formErrors["aadhar-doc"] && (
+                              <span className="error-message">{formErrors["aadhar-doc"]}</span>
+                            )}
                           </div>
                         </div>
 
@@ -275,6 +387,9 @@ const ApplicationForm = () => {
                               name="parent-name"
                               onChange={onchange}
                             />
+                            {formErrors["parent-name"] && (
+                              <span className="error-message">{formErrors["parent-name"]}</span>
+                            )}
                           </div>
                           <div className="parent-name">
                             <label>Guardian/Parent Relationship <span>*</span></label>
@@ -284,6 +399,9 @@ const ApplicationForm = () => {
                               name="guardian-relationship"
                               onChange={onchange}
                             />
+                            {formErrors["guardian-relationship"] && (
+                              <span className="error-message">{formErrors["guardian-relationship"]}</span>
+                            )}
                           </div>
                           <div className="parent-name">
                             <label>Guardian/Parent Phone Number <span>*</span></label>
@@ -293,6 +411,9 @@ const ApplicationForm = () => {
                               name="guardian-number"
                               onChange={onchange}
                             />
+                             {formErrors["guardian-number"] && (
+                              <span className="error-message">{formErrors["guardian-number"]}</span>
+                            )}
                           </div>
                         </div>
                         <div className="row-two">
@@ -304,6 +425,9 @@ const ApplicationForm = () => {
                               name="annual-income"
                               onChange={onchange}
                             />
+                            {formErrors["annual-income"] && (
+                              <span className="error-message">{formErrors["annual-income"]}</span>
+                            )}
                           </div>
                           <div className="smart-card">
                             <label>Upload the Smart Card <span>*</span></label>
@@ -313,6 +437,9 @@ const ApplicationForm = () => {
                               name="smart-card-file"
                               onChange={onchange}
                             />
+                            {formErrors["smart-card-file"] && (
+                              <span className="error-message">{formErrors["smart-card-file"]}</span>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -344,7 +471,7 @@ const ApplicationForm = () => {
                                   onChange={onchange}
                                 />
                                 <label>Currently in 12th</label>
-
+                    
                               </div>
                               <div className="two">
                                 <input

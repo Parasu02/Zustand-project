@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import axios from "axios";
 import {
@@ -8,8 +8,7 @@ import {
   Popover,
   Tag,
   Skeleton,
-  Tooltip,
-  notification,
+  Tooltip
 } from "antd";
 import dayjs from "dayjs";
 import { useQuery } from "@tanstack/react-query";
@@ -31,6 +30,7 @@ import ViewMore from "../../components/Applications/ViewMore";
 const Applications = () => {
   const filterFields = useFilter("applicant");
   const { id: batchId } = useParams();
+  const navigator = useNavigate()
   const { user } = useAuth();
   const [popoverVisible, setPopoverVisible] = useState(false);
   const [viewMoreApplicant, setViewMoreApplicant] = useState([]);
@@ -102,19 +102,25 @@ const Applications = () => {
           <h1>Applications list</h1>
         </div>
         <div className="application-actions flex">
-          <div className="import">
-            {/* {getPermission(
+          {/* <div className="import-btn-sec">
+            {getPermission(
               user.permissions,
               "create_Excel_Import",
               "create_Excel_Import"
-            ) && <button className="btn primary-medium">Import</button>} */}
+            ) && <button className="btn primary-medium">Import</button>}
+          </div> */}
+          <div className="create-application-btn-sec">
+            <button className="btn primary-medium-icon" onClick={()=> navigator(`/batch/${batchId}/application/form`)}>Create</button>
+          </div>
+          <div className="refetch-btn-sec">
+            <button className="btn primary-medium" onClick={refetch}>refetch</button>
           </div>
         </div>
       </div>
       {getPermission(user.permissions, "Applicant", "read") && (
         <>
           <div className="application-inner-container">
-            <div className="search-container flex">
+            <div className="search-container ">
               <div className="search-area-section">
                 <img src="/icons/searchIcon.svg" alt="" className="search-icon" />
                 <input
@@ -123,8 +129,7 @@ const Applications = () => {
                   placeholder="Search here"
                   onChange={(e) => setApplicationSearch(e.target.value)}
                 />
-
-                {/* <Popover
+                <Popover
                   placement="leftTop"
                   open={popoverVisible}
                   onOpenChange={(visible) => setPopoverVisible(visible)}
@@ -136,11 +141,10 @@ const Applications = () => {
                     alt=""
                     className="filter-icon"
                   />
-                </Popover> */}
+                </Popover>
+
               </div>
-              <div className="refetch-applications-area">
-                <button className="btn primary-medium" onClick={refetch}>Refetch</button>
-              </div>
+
             </div>
 
             <div className="filter-or-search-container">

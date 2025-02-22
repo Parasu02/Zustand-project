@@ -119,7 +119,7 @@ function Settings() {
             <div className="menu-list">
               <ul>
                 <li className="settings-nav" onClick={()=>setActiveTab("1")}>Change Password <img src="/icons/Change-password-lock.svg" alt="" /></li>
-                {getPermission(user.permissions,"Weightage","create") && <li className="settings-nav" onClick={()=>setActiveTab("2")}>Wegihtage <img src="" alt="" /></li>}
+                {/* {getPermission(user.permissions,"Weightage","create") && <li className="settings-nav" onClick={()=>setActiveTab("2")}>Wegihtage <img src="" alt="" /></li>} */}
               </ul>
             </div>
           </div>
@@ -222,7 +222,7 @@ function Settings() {
           </form>
         </div>
         )}
-        {activeTab == "2" && (
+        {/* {activeTab == "2" && (
           <div>
             {getPermission(user.permissions,"Weightage","create") && (
                <div className="weightage-list-container">
@@ -241,7 +241,7 @@ function Settings() {
              </div>
             )}
           </div>
-        )}
+        )} */}
       </div>
     </>
   );

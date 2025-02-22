@@ -8,9 +8,9 @@
   border: none;
   -webkit-user-select: none;
   /* Safari */
+  -ms-user-select: none;
   /* IE 10 and IE 11 */
-  -moz-user-select: none;
-       user-select: none;
+  user-select: none;
   /* Standard syntax */
 }
 
@@ -229,7 +229,7 @@ li {
   color: #969d88;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-one .applicant-name p span {
-  color: red;
+  color: #ef4444;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-one .applicant-name input {
   margin-top: 6px;
@@ -242,9 +242,6 @@ li {
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-one .applicant-name input:focus {
   border: 1px solid #49a843;
 }
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-one .applicant-name input::-moz-placeholder {
-  color: #969d88;
-}
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-one .applicant-name input::placeholder {
   color: #969d88;
 }
@@ -254,7 +251,7 @@ li {
   width: 268px;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-one .applicant-dob span {
-  color: red;
+  color: #ef4444;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-one .applicant-dob input {
   margin-top: 6px;
@@ -267,9 +264,6 @@ li {
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-one .applicant-dob input:focus {
   border: 1px solid #49a843;
 }
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-one .applicant-dob input::-moz-placeholder {
-  color: #969d88;
-}
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-one .applicant-dob input::placeholder {
   color: #969d88;
 }
@@ -279,7 +273,7 @@ li {
   width: 268px;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-one .applicant-gender span {
-  color: red;
+  color: #ef4444;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-one .applicant-gender input {
   margin-top: 6px;
@@ -291,9 +285,6 @@ li {
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-one .applicant-gender input:focus {
   border: 1px solid #49a843;
-}
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-one .applicant-gender input::-moz-placeholder {
-  color: #969d88;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-one .applicant-gender input::placeholder {
   color: #969d88;
@@ -310,7 +301,7 @@ li {
   color: #969d88;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-two .applicant-email p span {
-  color: red;
+  color: #ef4444;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-two .applicant-email input {
   margin-top: 6px;
@@ -323,9 +314,6 @@ li {
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-two .applicant-email input:focus {
   border: 1px solid #49a843;
 }
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-two .applicant-email input::-moz-placeholder {
-  color: #969d88;
-}
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-two .applicant-email input::placeholder {
   color: #969d88;
 }
@@ -337,7 +325,7 @@ li {
   color: #969d88;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-two .applicant-contact-number p span {
-  color: red;
+  color: #ef4444;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-two .applicant-contact-number input {
   margin-top: 6px;
@@ -349,9 +337,6 @@ li {
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-two .applicant-contact-number input:focus {
   border: 1px solid #49a843;
-}
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-two .applicant-contact-number input::-moz-placeholder {
-  color: #969d88;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-two .applicant-contact-number input::placeholder {
   color: #969d88;
@@ -368,7 +353,7 @@ li {
   color: #969d88;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-three .applicant-whatsapp-number p span {
-  color: red;
+  color: #ef4444;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-three .applicant-whatsapp-number input {
   margin-top: 6px;
@@ -381,9 +366,6 @@ li {
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-three .applicant-whatsapp-number input:focus {
   border: 1px solid #49a843;
 }
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-three .applicant-whatsapp-number input::-moz-placeholder {
-  color: #969d88;
-}
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-three .applicant-whatsapp-number input::placeholder {
   color: #969d88;
 }
@@ -393,7 +375,7 @@ li {
   width: 268px;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-three .applicant-address span {
-  color: red;
+  color: #ef4444;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-three .applicant-address input {
   margin-top: 6px;
@@ -406,9 +388,6 @@ li {
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-three .applicant-address input:focus {
   border: 1px solid #49a843;
 }
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-three .applicant-address input::-moz-placeholder {
-  color: #969d88;
-}
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-three .applicant-address input::placeholder {
   color: #969d88;
 }
@@ -418,7 +397,7 @@ li {
   width: 268px;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-three .applicant-apartment span {
-  color: red;
+  color: #ef4444;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-three .applicant-apartment input {
   margin-top: 6px;
@@ -430,9 +409,6 @@ li {
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-three .applicant-apartment input:focus {
   border: 1px solid #49a843;
-}
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-three .applicant-apartment input::-moz-placeholder {
-  color: #969d88;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-three .applicant-apartment input::placeholder {
   color: #969d88;
@@ -449,7 +425,7 @@ li {
   color: #969d88;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-four .applicant-postcode p span {
-  color: red;
+  color: #ef4444;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-four .applicant-postcode input {
   margin-top: 6px;
@@ -462,9 +438,6 @@ li {
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-four .applicant-postcode input:focus {
   border: 1px solid #49a843;
 }
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-four .applicant-postcode input::-moz-placeholder {
-  color: #969d88;
-}
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-four .applicant-postcode input::placeholder {
   color: #969d88;
 }
@@ -474,7 +447,7 @@ li {
   width: 268px;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-four .applicant-city span {
-  color: red;
+  color: #ef4444;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-four .applicant-city input {
   margin-top: 6px;
@@ -487,9 +460,6 @@ li {
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-four .applicant-city input:focus {
   border: 1px solid #49a843;
 }
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-four .applicant-city input::-moz-placeholder {
-  color: #969d88;
-}
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-four .applicant-city input::placeholder {
   color: #969d88;
 }
@@ -499,7 +469,7 @@ li {
   width: 268px;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-four .applicant-whatsapp-number span {
-  color: red;
+  color: #ef4444;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-four .applicant-whatsapp-number input {
   margin-top: 6px;
@@ -511,9 +481,6 @@ li {
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-four .applicant-whatsapp-number input:focus {
   border: 1px solid #49a843;
-}
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-four .applicant-whatsapp-number input::-moz-placeholder {
-  color: #969d88;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-four .applicant-whatsapp-number input::placeholder {
   color: #969d88;
@@ -530,7 +497,7 @@ li {
   color: #969d88;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-five .applicant-postcode p span {
-  color: red;
+  color: #ef4444;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-five .applicant-postcode input {
   margin-top: 6px;
@@ -544,9 +511,6 @@ li {
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-five .applicant-postcode input:focus {
   border: 1px solid #49a843;
 }
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-five .applicant-postcode input::-moz-placeholder {
-  color: #969d88;
-}
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-five .applicant-postcode input::placeholder {
   color: #969d88;
 }
@@ -556,7 +520,7 @@ li {
   width: 268px;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-five .applicant-city span {
-  color: red;
+  color: #ef4444;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-five .applicant-city input {
   margin-top: 6px;
@@ -569,9 +533,6 @@ li {
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-five .applicant-city input:focus {
   border: 1px solid #49a843;
 }
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-five .applicant-city input::-moz-placeholder {
-  color: #969d88;
-}
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-five .applicant-city input::placeholder {
   color: #969d88;
 }
@@ -581,7 +542,7 @@ li {
   width: 268px;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-five .applicant-whatsapp-number span {
-  color: red;
+  color: #ef4444;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-five .applicant-whatsapp-number input {
   margin-top: 6px;
@@ -593,9 +554,6 @@ li {
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-five .applicant-whatsapp-number input:focus {
   border: 1px solid #49a843;
-}
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-five .applicant-whatsapp-number input::-moz-placeholder {
-  color: #969d88;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .personal-container .personal-form .row-five .applicant-whatsapp-number input::placeholder {
   color: #969d88;
@@ -623,9 +581,6 @@ li {
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .guardian-details-container .guardian-form .row-one .parent-name input:focus {
   border: 1px solid #49a843;
 }
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .guardian-details-container .guardian-form .row-one .parent-name input::-moz-placeholder {
-  color: #969d88;
-}
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .guardian-details-container .guardian-form .row-one .parent-name input::placeholder {
   color: #969d88;
 }
@@ -649,9 +604,6 @@ li {
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .guardian-details-container .guardian-form .row-two .annual-income input:focus {
   border: 1px solid #49a843;
 }
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .guardian-details-container .guardian-form .row-two .annual-income input::-moz-placeholder {
-  color: #969d88;
-}
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .guardian-details-container .guardian-form .row-two .annual-income input::placeholder {
   color: #969d88;
 }
@@ -664,9 +616,6 @@ li {
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .guardian-details-container .guardian-form .row-two .smart-card input:focus {
   border: 1px solid #49a843;
-}
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .guardian-details-container .guardian-form .row-two .smart-card input::-moz-placeholder {
-  color: #969d88;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .guardian-details-container .guardian-form .row-two .smart-card input::placeholder {
   color: #969d88;
@@ -766,9 +715,6 @@ li {
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .education-details-container .education-form .row-three input:focus {
   border: 1px solid #49a843;
 }
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .education-details-container .education-form .row-three input::-moz-placeholder {
-  color: #969d88;
-}
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .education-details-container .education-form .row-three input::placeholder {
   color: #969d88;
 }
@@ -786,9 +732,6 @@ li {
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .education-details-container .education-form .row-three .tenth .two-inputs input:focus {
   border: 1px solid #49a843;
-}
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .education-details-container .education-form .row-three .tenth .two-inputs input::-moz-placeholder {
-  color: #969d88;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .education-details-container .education-form .row-three .tenth .two-inputs input::placeholder {
   color: #969d88;
@@ -847,9 +790,6 @@ li {
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .education-details-container .education-form .row-five input:focus {
   border: 1px solid #49a843;
 }
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .education-details-container .education-form .row-five input::-moz-placeholder {
-  color: #969d88;
-}
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .education-details-container .education-form .row-five input::placeholder {
   color: #969d88;
 }
@@ -871,9 +811,6 @@ li {
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .education-details-container .education-form .row-five .upload-mark-sheet input:focus {
   border: 1px solid #49a843;
-}
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .education-details-container .education-form .row-five .upload-mark-sheet input::-moz-placeholder {
-  color: #969d88;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .education-details-container .education-form .row-five .upload-mark-sheet input::placeholder {
   color: #969d88;
@@ -902,9 +839,6 @@ li {
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .other-details-container .other-details-form .row-one .other-cer-section .extra-cur input:focus,
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .other-details-container .other-details-form .row-one .other-cer-section .computer-certificate input:focus {
   border: 1px solid #49a843;
-}
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .other-details-container .other-details-form .row-one .other-cer-section .extra-cur input::-moz-placeholder, .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .other-details-container .other-details-form .row-one .other-cer-section .computer-certificate input::-moz-placeholder {
-  color: #969d88;
 }
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .other-details-container .other-details-form .row-one .other-cer-section .extra-cur input::placeholder,
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .other-details-container .other-details-form .row-one .other-cer-section .computer-certificate input::placeholder {
@@ -1019,9 +953,6 @@ li {
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .other-details-container .other-details-form .row-four .training-inputs .trainering input:focus {
   border: 1px solid #49a843;
 }
-.application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .other-details-container .other-details-form .row-four .training-inputs .trainering input::-moz-placeholder {
-  color: #969d88;
-}
 .application-form-main-container .sub-container .application-form-container .ant-tabs-content-holder .other-details-container .other-details-form .row-four .training-inputs .trainering input::placeholder {
   color: #969d88;
 }
@@ -1081,4 +1012,6 @@ li {
 
 .ant-tabs-tab span {
   color: #969d88;
-}/*# sourceMappingURL=ApplicationForm.css.map */
+}
+
+/*# sourceMappingURL=ApplicationForm.css.map */
